@@ -1,1 +1,44 @@
-<p>grafica works!</p>
+<div class="row">
+
+    <div class="col-6">
+        <app-donut  titulo="Ventas"
+                    [labels]="labels1"
+                    [data1]="data1">
+        </app-donut>
+    </div>
+
+    <div class="col-6">
+        <app-donut  titulo="Vacunas"
+                    [labels]="['SIDA', 'PH', 'Saranpión']"
+                    [data1]="[100, 100 ,100]"
+                    >
+        </app-donut>
+    </div>
+
+
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-6">
+
+        <app-donut  titulo="Pacientes"
+                    [labels]="['0-20 años', '21-50 años', '51 años en adelante']"
+                    [data1]="[100, 300, 600]">
+
+        </app-donut>
+
+    </div>
+
+    <div class="col-6">
+
+        <app-donut  titulo="Partos"
+                    [labels]="['Sexo masculino', 'Sexo femenino']"
+                    [data1]="[240,270]">
+        </app-donut>
+        
+    </div>
+
+</div>
