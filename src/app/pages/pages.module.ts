@@ -12,6 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { GraficaComponent } from './grafica/grafica.component';
 import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 
@@ -23,6 +25,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     GraficaComponent,
     PagesComponent,
     AccountSettingsComponent,
+    PromesasComponent,
+    RxjsComponent,
   ],
   imports: [
     FormsModule,
