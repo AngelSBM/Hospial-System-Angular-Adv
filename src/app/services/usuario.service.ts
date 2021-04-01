@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { RegistroForm } from '../interfaces/registro-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { Usuario } from '../models/usuario.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 const base_url = environment.base_url;
@@ -30,6 +31,12 @@ export class UsuarioService {
                 
                 this.googleInit();
   }
+
+  
+  public get token() : string {
+    return localStorage.getItem('token') || '';
+  }
+  
 
   
   googleInit(){
@@ -59,25 +66,16 @@ export class UsuarioService {
 
   
   validarToken(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
 
     return this.http.get(`${ base_url }/login/renew`, {
       headers: {
-        'x-token': token
+        'x-token': this.token
       }
     }).pipe(
       map( (resp : any) => {
         
-        const {  
-              nombre,
-              email,
-              img,
-              google,
-              role,
-              uid
-              } = resp.usuario;
-
-        this.usuario = new Usuario(nombre, email,'', img, google, role, uid);        
+        const { email, google, nombre, role, img = '', uid } = resp.usuario;
+        this.usuario = new Usuario( nombre, email, '', img, google, role, uid );     
         localStorage.setItem('token', resp.token);
         
         return true;
@@ -98,6 +96,23 @@ export class UsuarioService {
                 )
         
   }
+
+
+  actualizarUsuario( data: { email: string, nombre: string, role } ){
+
+    data = {
+      ...data,
+      role: this.usuario.role
+    }
+
+    return this.http.put(`${ base_url }/usuarios/${ this.usuario.uid }`, data, {
+      headers: {
+        'x-token': this.token
+      }
+    } )
+
+  }
+
 
   login( formData: LoginForm ){
     

@@ -5,17 +5,33 @@
             <p class="text-muted m-b-30 font-13"> Ajustes</p>
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-                    <form>
+                    <form
+                            [formGroup]="perfilForm"
+                            (ngSubmit)="actualizarPerfil()">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nombre de usuario</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Username">
+                            <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="exampleInputEmail1" 
+                                    placeholder="Enter Username"
+                                    formControlName="nombre">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Correo electronico</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <input 
+                                    type="email" 
+                                    class="form-control" 
+                                    id="exampleInputEmail1" 
+                                    placeholder="Email"
+                                    formControlName="email"
+                                    [readOnly]="usuario.google">                                    
                         </div>
                                             
-                        <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10">
+                        <button 
+                                type="submit" 
+                                class="btn btn-success btn-block waves-effect waves-light m-r-10"
+                                [disabled]="perfilForm.invalid">
                             <i class="fa fa-save"></i> Guardar
                         </button>
                         
@@ -30,14 +46,23 @@
             <h3 class="car-title">Avatar</h3>
             <p class="car-subtitle">Imagen del usuario</p>
 
-            <img src="" alt="">
+            <div class="img-container text-center">
+                <img [src]="usuario.imagenUrl" class="img-avatar" alt="">
 
-            <input type="file" name="" id="">
+            </div>
+
+            <input 
+                    type="file"
+                    (change)="cambiarImagen($event.target.files[0])">
 
             <br>
             <br>
 
-            <button type="button" class="btn btn-success waves-effect waves-light m-r-10">
+            <button 
+                    type="button" 
+                    class="btn btn-success waves-effect waves-light m-r-10"
+                    [disabled]="!imagenSubir"
+                    (click)="subirImagen()">
                 <i class="fa fa-save"></i> Cambiar imagen
             </button>
 
