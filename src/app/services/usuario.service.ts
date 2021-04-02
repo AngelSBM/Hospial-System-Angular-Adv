@@ -4,12 +4,15 @@ import { catchError, map, tap } from "rxjs/operators";
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 
+//Recursos del entorno de desarrollo
 import { environment } from 'src/environments/environment';
 
-import { RegistroForm } from '../interfaces/registro-form.interface';
-import { LoginForm } from '../interfaces/login-form.interface';
+//Modelos
 import { Usuario } from '../models/usuario.model';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+//Interfaces
+import { RegistroForm } from '../interfaces/registro-form.interface';
+import { CargarUsuarios } from '../interfaces/login-form.interface';
 
 
 const base_url = environment.base_url;
@@ -114,7 +117,7 @@ export class UsuarioService {
   }
 
 
-  login( formData: LoginForm ){
+  login( formData: any ){
     
     return this.http.post(`${ base_url }/login`, formData )
                 .pipe(
@@ -137,6 +140,40 @@ export class UsuarioService {
                   } )
                 )
         
+  }
+
+  
+  getUsuarios( desde: number = 0 ){
+    return this.http.get<CargarUsuarios>(`${ base_url }/usuarios?desde=${ desde }`, {
+      headers: {
+        'x-token': this.token
+      }
+    })
+  }
+
+
+  eliminarUsuario( usuario: Usuario ){
+    
+    console.log('eliminando');
+    const url = `${ base_url }/usuarios/${ usuario.uid }`;
+
+    return this.http.delete( url, {
+      headers: {
+        'x-token': this.token
+      }
+    });
+          
+  }
+
+
+  guardarUsuario( usuario: Usuario ){  
+
+    return this.http.put(`${ base_url }/usuarios/${ usuario.uid }`, usuario, {
+      headers: {
+        'x-token': this.token
+      }
+    } )
+
   }
 
 

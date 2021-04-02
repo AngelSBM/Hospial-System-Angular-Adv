@@ -1,9 +1,10 @@
+import { Usuario } from "../models/usuario.model";
 
 
-export interface LoginForm {
+export interface CargarUsuarios {
 
-    email : string;
-    password : string;
-    remember : string;
+    ok: boolean;
+    total: number;
+    usuarios: Usuario[];
 
 }

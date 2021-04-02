@@ -15,6 +15,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuariosComponent } from './mantemientos/usuarios/usuarios.component';
+import { ImagenUrlPipe } from './pipes/imagen-url.pipe';
 
 
 
@@ -29,6 +31,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     PromesasComponent,
     RxjsComponent,
     PerfilComponent,
+    UsuariosComponent,
+    ImagenUrlPipe,
   ],
   imports: [
     CommonModule,
