@@ -50,10 +50,15 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Por cada usuario en el arreglo de Usuarios, se crea un row con la info de este -->
                             <tr *ngFor="let usuario of usuarios">
-                                <td class="text-center"><img 
+                                <td class="text-center">
+                                    <img 
                                         src="{{ usuario.img | imagenUrl }}"
-                                        class="avatar"></td>
+                                        class="avatar cursor"
+                                        (click)="abrirModal( usuario )">
+                                </td>
+
                                 <td>{{ usuario.email }}</td>
                                 <td>{{ usuario.nombre }}</td>
                                 <td class="text-center w140">
