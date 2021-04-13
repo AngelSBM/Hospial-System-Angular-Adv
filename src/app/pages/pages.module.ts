@@ -15,8 +15,10 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { UsuariosComponent } from './mantemientos/usuarios/usuarios.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { ImagenUrlPipe } from './pipes/imagen-url.pipe';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 
 
 
@@ -33,6 +35,8 @@ import { ImagenUrlPipe } from './pipes/imagen-url.pipe';
     PerfilComponent,
     UsuariosComponent,
     ImagenUrlPipe,
+    HospitalesComponent,
+    MedicosComponent,
   ],
   imports: [
     CommonModule,

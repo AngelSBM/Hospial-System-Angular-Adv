@@ -25,7 +25,7 @@ export class ImagenUrlPipe implements PipeTransform {
 
     }else{
 
-      return 
+      return  
        
     }
 
