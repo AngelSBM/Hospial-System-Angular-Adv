@@ -9,11 +9,11 @@ const base_url = environment.base_url;
 })
 export class ImagenUrlPipe implements PipeTransform {
 
-  transform( url : string ): string {
+  transform( url : string, tipo : 'usuarios'|'hospitales'|'medicos' ): string {
     
     if( !url ){
 
-      return `${ base_url }/upload/usuarios/no-image.png`;;
+      return `${ base_url }/upload/${ tipo }/no-image.png`;;
 
     } else if ( url.includes('http') ){
 
@@ -21,7 +21,7 @@ export class ImagenUrlPipe implements PipeTransform {
 
     }else if( url ){
 
-      return `${ base_url }/upload/usuarios/${ url }`;
+      return `${ base_url }/upload/${ tipo }/${ url }`;
 
     }else{
 
