@@ -16,6 +16,16 @@ export class BusquedasService {
     return localStorage.getItem('token') || '';
   }
 
+  busquedaGlobal( termino: string ){
+
+    return this.http.get<any[]>(`${ base_url }/todo/${ termino }`, {
+      headers: {
+        'x-token': this.token
+      }
+    }); 
+
+  }
+
   buscar( tipo: string, termino: string = '' ){
 
     return this.http.get<any[]>(`${ base_url }/todo/colecciones/${ tipo }/${ termino }`, {

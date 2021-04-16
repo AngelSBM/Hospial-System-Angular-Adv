@@ -16,6 +16,8 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 
@@ -27,18 +29,21 @@ const routes: Routes = [
         canActivate: [ AuthGuard ],
         children: [
             { path: '', component: DashboardComponent, data: { titulo:  'dashboard' } },
+            { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes de cuenta' } },
+            { path: 'buscar/:termino', component: BusquedaComponent, data: { titulo: 'Busqueda' } },
             { path: 'grafica1', component: GraficaComponent, data: { titulo: 'Grafica' } },
             { path: 'progress', component: ProgressComponent, data: { titulo: 'Progreso' } },
-            { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes de cuenta' } },
             { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
             { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs' } },
             { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil de Usuario' } },
 
             //Mantenimiento
-            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Usuarios de la aplicación' } },
             { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales de la aplicación' } },
             { path: 'medicos', component: MedicosComponent, data: { titulo: 'Médicos de la aplicación' } },
-            { path: 'medicos/:id', component: MedicoComponent, data: { titulo: 'Médicos de la aplicación' } },            
+            { path: 'medicos/:id', component: MedicoComponent, data: { titulo: 'Médicos de la aplicación' } },
+            
+            //Rutas del admin
+            { path: 'usuarios', canActivate: [ AdminGuard ], component: UsuariosComponent, data: { titulo: 'Usuarios de la aplicación' } },
         ]
     },
 
